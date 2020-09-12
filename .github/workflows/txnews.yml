@@ -7,9 +7,6 @@
 name: txnews
 
 on:
-  push:
-    branches: 
-     - master 
   schedule:
      - cron: '*/5 * * * *'
   watch:
@@ -30,7 +27,7 @@ jobs:
           npm install
       - name: '运行 【腾讯新闻】'
         run: |
-          node txnews.js
+          node ./Task/txnews.js
         env:
           cookieVal: ${{ secrets.TXNEWS_COOKIE }}
           signurlVal: ${{ secrets.TXNEWS_SIGN }}
