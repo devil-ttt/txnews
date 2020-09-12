@@ -4,12 +4,12 @@
 #   branches: 
 #   - master 
 
-name: txnews
+name: 4298
 
 on:
   push:
-    branches: 
-     - master 
+  #  branches: 
+  #   - master 
   schedule:
      - cron: '*/5 * * * *'
   watch:
