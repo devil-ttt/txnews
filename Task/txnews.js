@@ -66,13 +66,13 @@ if (isGetCookie) {
   GetCookie()
 } else {
  !(async () => {
-    {
+    
   if(!signurlVal && !cookieVal){
     $.msg($.name, '【提示】🉐登录腾讯新闻app获取cookie',"qqnews://article_9500?tab=news_news&from=self", {"open-url": "qqnews://article_9500?tab=news_news&from=self"})
     await notify.sendNotify($.name, '【提示】请先获取腾讯新闻一Cookie',"qqnews://article_9500?tab=news_news&from=self", {"open-url": "qqnews://article_9500?tab=news_news&from=self"});
      return;
     }
-     token = signurlVal.match(/devid=[a-zA-Z0-9_-]+/g)
+     token = signurlVal.match(/devid=[a-zA-Z0-9_-]+/g)[0]
      console.log("\n开始获取您的活动ID");
       await getsign();
       await activity();
@@ -95,9 +95,9 @@ if (isGetCookie) {
     }
     else if (openreadred==readredtotal&&openvideored==videoredtotal){
         await notify.sendNotify($.name+` 今日任务已完成✅`+'\n'+subTile+'\n'+ detail)
-      }
+         }
       console.log('-----------'+'\n'+$.name+'\n'+subTile+'\n'+ detail)
-    }
+   }
   })()
       .catch((e) => $.logErr(e))
       .finally(() => $.done())
