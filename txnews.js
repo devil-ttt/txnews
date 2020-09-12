@@ -59,7 +59,6 @@ if ($.isNode()) {
   cookieVal = process.env.cookieVal;
   signurlVal = process.env.signurlVal;
   videoVal = process.env.videoVal
- 
 }
 
 let isGetCookie = typeof $request !== 'undefined'
@@ -91,14 +90,13 @@ if (isGetCookie) {
       await getTotal();
       await showmsg();
   if ($.isNode()){
-   if (readnum%notifyInterval!==0){
-        await notify.sendNotify($.name,subTile,detail);
-      }
+   if (readnum%notifyInterval==0){
+        await notify.sendNotify($.name+'\n'+subTile+'\n'+ detail);
     }
     else if (openreadred==readredtotal&&openvideored==videoredtotal){
-        await notify.sendNotify($.name+` 今日任务已完成✅`,subTile,detail);
+        await notify.sendNotify($.name+` 今日任务已完成✅`+'\n'+subTile+'\n'+ detail)
       }
-      console.log('-----------'+'\n'+$.name,subTile,detail)
+      console.log('-----------'+'\n'+$.name+'\n'+subTile+'\n'+ detail)
     }
   })()
       .catch((e) => $.logErr(e))
@@ -179,7 +177,7 @@ function toRead() {
 function lookVideo() {
   return new Promise((resolve, reject) => {
     setTimeout(()=>{
-      $.post({url: videoVal, headers: {Cookie:cookieVal},body: 'event=video_read'},(error, response, data) =>{
+      $.post({url: signurlVal, headers: {Cookie:cookieVal},body: 'event=video_read'},(error, response, data) =>{
         if (error){
           $.msg($.name, '观看视频:'+ error)
         }else{
