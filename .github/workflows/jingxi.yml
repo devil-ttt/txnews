@@ -4,16 +4,16 @@
 name: jingxi
 
 on:
-  push:
-    branches: 
-     - master 
+  #push:
+    #branches: 
+     #- master 
 
   schedule:
      - cron: '20 18 * * *'
   watch:
     types: started
 
-#jobs:
+jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
