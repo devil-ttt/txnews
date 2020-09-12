@@ -8,7 +8,7 @@ name: 511
 
 on:
   schedule:
-    - cron: '*/ * * * *'
+    - cron: '*/5 * * * *'
   watch:
     types: [started]
 jobs:
