@@ -27,7 +27,7 @@ jobs:
           npm install
       - name: '运行 【腾讯新闻】'
         run: |
-          node ./Task/txnews.js
+          node /Task/txnews.js
         env:
           cookieVal: ${{ secrets.TXNEWS_COOKIE }}
           signurlVal: ${{ secrets.TXNEWS_SIGN }}
