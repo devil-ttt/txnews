@@ -595,14 +595,14 @@ function readTime() {
 }
 
 function earningsInfo() {
-    return new Promise((resolve, reject) => {
-        const token = JSON.parse(signheaderVal)['Referer'].split("?")[1]
+  return new Promise((resolve, reject) => {
         setTimeout(() => {
             const url = {
-                url: `https://kd.youth.cn/wap/user/balance?${token}`,
+                url: `https://kd.youth.cn/wap/user/balance?${JSON.parse(signheaderVal)['Referer'].split("?")[1]}`,
                 headers: signheaderVal,
             }
-            $.get(url, (error, response, data) => {
+    console.log(url)
+        $.get(url, (error, response, data) => {
               $.log(`开始统计收益信息`)
            console.log(data)
               infores = JSON.parse(data)
@@ -619,7 +619,7 @@ function earningsInfo() {
         },s)
     })
 }
-async function showmsg() {
+function showmsg() {
     return new Promise(resolve => {
         if (rotaryres.status == 1 && rotaryres.data.remainTurn >= 97) {
             $.msg($.name + " " + nick, subTitle, detail)  //默认前三次为通知
