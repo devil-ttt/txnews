@@ -599,12 +599,10 @@ function earningsInfo() {
         setTimeout(() => {
             const url = {
                 url: `https://kd.youth.cn/wap/user/balance?${JSON.parse(signheaderVal)['Referer'].split("?")[1]}`,
-                headers: signheaderVal,
+                headers: JSON.parse(signheaderVal),
             }
-    console.log(url)
         $.get(url, (error, response, data) => {
               $.log(`开始统计收益信息`)
-           console.log(data)
               infores = JSON.parse(data)
                 if (infores.status == 0) {
                     detail += `<收益统计>：\n`
