@@ -604,7 +604,8 @@ function earningsInfo() {
             }
             $.get(url, (error, response, data) => {
               $.log(`开始统计收益信息`)
-                infores = JSON.parse(data)
+           console.log(data)
+              infores = JSON.parse(data)
                 if (infores.status == 0) {
                     detail += `<收益统计>：\n`
                     for (i = 0; i < infores.history[0].group.length; i++) {
