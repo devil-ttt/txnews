@@ -71,10 +71,10 @@ const $ = new Env("中青看点")
 let notifyInterval = $.getdata("notifytimes")||50 //通知间隔，默认抽奖每50次通知一次，如需关闭全部通知请设为0
 const YOUTH_HOST = "https://kd.youth.cn/WebApi/";
 let logs = $.getdata('zqlogs')||true //调试日志开关为false或true
-const signheaderVal = $.getdata('youthheader_zq')
-const timebodyVal = $.getdata('readtime_zq')
-const articlebodyVal = $.getdata('read_zq')
-const redpbodyVal = $.getdata('red_zq')
+let signheaderVal = $.getdata('youthheader_zq')
+let timebodyVal = $.getdata('readtime_zq')
+let articlebodyVal = $.getdata('read_zq')
+let redpbodyVal = $.getdata('red_zq')
 
 const firstcheck = $.getdata('signt')
 const runtimes = $.getdata('times')
