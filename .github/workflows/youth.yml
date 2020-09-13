@@ -4,16 +4,16 @@
 name: youth
 
 on:
-  #push:
+  push:
     branches: 
      - master 
 
-  #schedule:
+  schedule:
      - cron: '20 18 * * *'
   watch:
     types: started
 
-#jobs:
+ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
