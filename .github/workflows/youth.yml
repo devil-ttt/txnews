@@ -30,10 +30,10 @@ jobs:
         run: |
           node youth.js
         env:
-          signheaderVal: ${{ secrets.YOUTH_HEADER }}
-          articlebodyVal: ${{ secrets.YOUTH_ARTBODY }}
-          redpbodyVal: ${{ secrets.YOUTH_REDBODY }}
-          timebodyVal: ${{ secrets.YOUTH_TIME }}
+          YOUTH_HEADER: ${{ secrets.YOUTH_HEADER }}
+          YOUTH_ARTBODY: ${{ secrets.YOUTH_ARTBODY }}
+          YOUTH_REDBODY: ${{ secrets.YOUTH_REDBODY }}
+          YOUTH_TIME: ${{ secrets.YOUTH_TIME }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
 

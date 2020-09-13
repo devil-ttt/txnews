@@ -80,10 +80,10 @@ const firstcheck = $.getdata('signt')
 const runtimes = $.getdata('times')
 
 if ($.isNode()) {
-  signheaderVal = process.env.signheaderVal;
-  timebodyVal = process.env.timebodyVal;
-  articlebodyVal = process.env.articlebodyVal;
-  redpbodyVal = process.env.redpbodyVal
+  signheaderVal = process.env.YOUTH_HEADER;
+  timebodyVal = process.env.YOUTH_TIME;
+  articlebodyVal = process.env.YOUTH_ACTBODY;
+  redpbodyVal = process.env.YOUTH_REDBODY
 }
 
 if (isGetCookie = typeof $request !== 'undefined') {
