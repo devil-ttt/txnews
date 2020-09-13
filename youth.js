@@ -430,12 +430,12 @@ function readArticle() {
         $.post(url, (error, response, data) => {
             $.log(`开始阅读文章`)
             readres = JSON.parse(data);
-            if (readres.items.max_notice == '\u770b\u592a\u4e45\u4e86\uff0c\u63621\u7bc7\u8bd5\u8bd5') {
-              //detail += `【阅读奖励】看太久了，换1篇试试\n`;
-           $.log(readres.items.max_notice)
-            }else if (readres.items.read_score !== undefined) {
+            if (readres.items.read_score !== undefined) {
               detail += `【阅读奖励】+${readres.items.read_score}个青豆\n`;
               $.log("本次阅读获得"+readres.items.read_score+"个青豆")
+            } else if (readres.items.max_notice == '\u770b\u592a\u4e45\u4e86\uff0c\u63621\u7bc7\u8bd5\u8bd5') {
+              //detail += `【阅读奖励】看太久了，换1篇试试\n`;
+        //   $.log(readres.items.max_notice)
             }
             resolve()
         })
