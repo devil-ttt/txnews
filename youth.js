@@ -81,9 +81,9 @@ const runtimes = $.getdata('times')
 
 if ($.isNode()) {
   signheaderVal = process.env.YOUTH_HEADER;
-  timebodyVal = process.env.YOUTH_TIME;
   articlebodyVal = process.env.YOUTH_ACTBODY;
-  redpbodyVal = process.env.YOUTH_REDBODY
+  redpbodyVal = process.env.YOUTH_REDBODY;
+  timebodyVal = process.env.YOUTH_TIME
 }
 
 if (isGetCookie = typeof $request !== 'undefined') {
