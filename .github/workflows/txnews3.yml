@@ -4,11 +4,11 @@
 #   branches: 
 #   - master 
 
-name: 511
+name: 511-w
 
 on:
   schedule:
-    - cron: '*/5 11 * * *'
+    - cron: '*/5 * * * *'
   watch:
     types: [started]
 jobs:
