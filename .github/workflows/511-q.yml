@@ -4,7 +4,7 @@
 #   branches: 
 #   - master 
 
-name: 511-w
+name: 511-q
 
 on:
   push:
