@@ -7,11 +7,9 @@
 name: 4298-pad
 
 on:
-  push:
-  #  branches: 
-  #   - master 
+  workflow_dispatch:
   schedule:
-     - cron: '*/5 * * * *'
+     - cron: '*/7 * * * *'
   watch:
      types: started
     
