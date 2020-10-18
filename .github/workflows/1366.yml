@@ -7,11 +7,9 @@
 name: 1370
 
 on:
-  push:
-   # branches: 
-   #  - master 
+  workflow_dispatch:
   schedule:
-     - cron: '0/5 * * * *'
+     - cron: '*/7 * * * *'
   watch:
      types: started
     
