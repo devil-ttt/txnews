@@ -7,10 +7,11 @@
 name: 511-w
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: '*/5 * * * *'
+     - cron: '*/7 * * * *'
   watch:
-    types: [started]
+     types: started
 jobs:
   build:
 
