@@ -30,8 +30,8 @@ jobs:
         run: |
           node txnews.js
         env:
-          cookieVal: ${{ secrets.TXNEWS7_COOKIE }}
-          signurlVal: ${{ secrets.TXNEWS7_SIGN }}
-          videoVal: ${{ secrets.TXNEWS7_VIDEO }}
+          cookieVal: ${{ secrets.TXNEWS8_COOKIE }}
+          signurlVal: ${{ secrets.TXNEWS8_SIGN }}
+          videoVal: ${{ secrets.TXNEWS8_VIDEO }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
