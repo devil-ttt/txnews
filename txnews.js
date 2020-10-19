@@ -1,6 +1,8 @@
 /*
 更新时间: 2020-09-10 13:30
+
 腾讯新闻签到修改版，可以自动阅读文章获取红包，该活动为瓜分百万现金挑战赛，针对幸运用户参与
+
 获取Cookie方法:
 1.把以下配置复制到响应配置下
 2.打开腾讯新闻app，阅读几篇文章，倒计时结束后即可获取阅读Cookie;
@@ -14,24 +16,33 @@
 Surge 4.0
 [Script]
 腾讯新闻 = type=cron,cronexp=0 8 0 * * *,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/txnews.js,script-update-interval=0
+
 腾讯新闻 = type=http-request,pattern=https:\/\/api\.inews\.qq\.com\/event\/v1\/user\/event\/report\?,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/txnews.js, requires-body=true
+
 ~~~~~~~~~~~~~~~~~~~~~
 Loon 2.1.0+
 [Script]
 # 本地脚本
 cron "04 00 * * *" script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/txnews.js, enabled=true, tag=腾讯新闻
+
 http-request https:\/\/api\.inews\.qq\.com\/event\/v1\/user\/event\/report\? script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/txnews.js, requires-body=true
+
 -----------------
+
 QX 1.0.7+ :
  [task_local]
 0 9 * * * https://raw.githubusercontent.com/Sunert/Scripts/master/Task/txnews.js, tag=腾讯新闻
  [rewrite_local]
 https:\/\/api\.inews\.qq\.com\/event\/v1\/user\/event\/report\? url script-request-body https://raw.githubusercontent.com/Sunert/Scripts/master/Task/txnews.js
+
 ~~~~~~~~~~~~~~~~~~
  [MITM]
 hostname = api.inews.qq.com
+
 ---------------------------
+
 Cookie获取后，请注释掉Cookie地址。
+
 */
 const $ = new Env('腾讯新闻');
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -58,7 +69,7 @@ if (isGetCookie) {
  !(async () => {
     {
   if(!signurlVal && !cookieVal){
-    $.msg($.name, '【提示】??登录腾讯新闻app获取cookie',"qqnews://article_9500?tab=news_news&from=self", {"open-url": "qqnews://article_9500?tab=news_news&from=self"})
+    $.msg($.name, '【提示】🉐登录腾讯新闻app获取cookie',"qqnews://article_9500?tab=news_news&from=self", {"open-url": "qqnews://article_9500?tab=news_news&from=self"})
     await notify.sendNotify($.name, '【提示】请先获取腾讯新闻一Cookie',"qqnews://article_9500?tab=news_news&from=self", {"open-url": "qqnews://article_9500?tab=news_news&from=self"});
      return;
     }
@@ -85,7 +96,7 @@ if (isGetCookie) {
       }
     }
     else if (openreadred==readredtotal&&openvideored==videoredtotal){
-        await notify.sendNotify($.name+` 今日任务已完成?`,subTile,detail);
+        await notify.sendNotify($.name+` 今日任务已完成✅`,subTile,detail);
       }
       console.log('-----------'+'\n'+$.name,subTile,detail)
     }
@@ -102,13 +113,13 @@ function GetCookie() {
     $.log(`cookieVal:${cookieVal}`)
     if (signurlVal) $.setdata(signurlVal, 'sy_signurl_txnews')
     if (cookieVal) $.setdata(cookieVal,  'sy_cookie_txnews')
-    $.msg($.name, `获取Cookie: 成功??`, ``)
+    $.msg($.name, `获取Cookie: 成功🎉`, ``)
   }
   if ($request &&$request.body.indexOf("video_read")> -1) {
     const videoVal =  $request.url
     $.log(`videoVal:${videoVal}`)
     if (videoVal) $.setdata(videoVal,  'video_txnews')
-    $.msg($.name, `获取视频地址: 成功??`, ``)
+    $.msg($.name, `获取视频地址: 成功🎉`, ``)
   }
 }
 
@@ -126,10 +137,10 @@ function getsign() {
         tip =  obj.data.tip_soup||obj.data.share_tip
         imgurl= obj.data.share_img
         Dictum = tip.replace(/[\<|\.|\>|br]/g,"")+""+obj.data.author.replace(/[\<|\.|\>|br|图|腾讯网友]/g,"")
-        signinfo =  '【签到信息】连续签到' + obj.data.signin_days+'天 '+'明日+'+ next +'金币 成功??\n'}
+        signinfo =  '【签到信息】连续签到' + obj.data.signin_days+'天 '+'明日+'+ next +'金币 成功🎉\n'}
       else {
-        $.msg('签到失败，??登录腾讯新闻app获取cookie', "", "")
-        console.log('签到失败，??登录腾讯新闻app获取cookie'+data)
+        $.msg('签到失败，🉐登录腾讯新闻app获取cookie', "", "")
+        console.log('签到失败，🉐登录腾讯新闻app获取cookie'+data)
         return
       }
       resolve()
@@ -142,7 +153,7 @@ function activity() {
     setTimeout(()=>{
       $.get({url:`${TX_HOST}user/activity/get?isJailbreak=0&${token}`, headers: {Cookie:cookieVal}}, (error,response, data) =>{
         if (error) {
-          $.msg("获取活动Id失败??", "", error)
+          $.msg("获取活动Id失败‼️", "", error)
         } else {
           let obj = JSON.parse(data)
           actid = obj.data.activity.id
@@ -234,17 +245,17 @@ function Redpack() {
         try{
           redpacks = rcash.data.award.num/100
           if (rcash.ret == 0&&readredpack!=0&&getreadred>0){
-            redpackres = `【阅读红包】到账`+readredpack+`元 ??\n`
+            redpackres = `【阅读红包】到账`+readredpack+`元 🌷\n`
             $.log("阅读红包到账"+readredpack+"元\n")
           }
           else if (rcash.ret == 0&&videoredpack!=0&&getvideored>0){
-            redpackres = `【视频红包】到账`+videoredpack+`元 ??\n`
+            redpackres = `【视频红包】到账`+videoredpack+`元 🌷\n`
             $.log("视频红包到账"+videoredpack+"元\n")
           }
         }
         catch(err){
           $.log("打开红包失败,响应数据: "+ data+"\n错误代码:"+err) };
-        $.msg($.name, "开红包失败，详情请看日志 ?", err)
+        $.msg($.name, "开红包失败，详情请看日志 ❌", err)
         resolve()
       })
     },s)
@@ -259,7 +270,7 @@ function getTotal() {
       headers: {Cookie: cookieVal}};
     $.post(totalUrl, function(error,response, data) {
       if (error) {
-        $.msg("获取收益信息失败??", "", error)
+        $.msg("获取收益信息失败‼️", "", error)
       } else {
         const obj = JSON.parse(data)
         subTile = '【收益总计】'+obj.data.wealth[0].title +'金币  '+"钱包: " +obj.data.wealth[1].title+'元'
@@ -273,13 +284,13 @@ function getTotal() {
 function showmsg() {
   return new Promise((resolve, reject) => {
     if(readnum||videonum){
-      detail = signinfo + `【文章阅读】已读/再读: `+ readnum +`/`+readtitle+` 篇\n`+`【阅读红包】已开/总计: `+openreadred+`/`+readredtotal+` 个??\n`+ `【观看视频】已看/再看: `+ videonum +`/`+videotitle+` 分钟\n`+`【视频红包】已开/总计: `+openvideored+`/`+videoredtotal+` 个??\n【每日一句】`+Dictum
+      detail = signinfo + `【文章阅读】已读/再读: `+ readnum +`/`+readtitle+` 篇\n`+`【阅读红包】已开/总计: `+openreadred+`/`+readredtotal+` 个🧧\n`+ `【观看视频】已看/再看: `+ videonum +`/`+videotitle+` 分钟\n`+`【视频红包】已开/总计: `+openvideored+`/`+videoredtotal+` 个🧧\n【每日一句】`+Dictum
     }
     if (readnum%notifyInterval==0){
       $.msg($.name,subTile,detail,{ 'open-url': "https://news.qq.com/FERD/cjRedDown.htm", 'media-url': imgurl } )
     }
     else if (openreadred==readredtotal&&openvideored==videoredtotal){
-      $.msg($.name+` 今日任务已完成?`,subTile,detail,{ 'open-url': "https://news.qq.com/FERD/cjRedDown.htm", 'media-url': imgurl } )
+      $.msg($.name+` 今日任务已完成✅`,subTile,detail,{ 'open-url': "https://news.qq.com/FERD/cjRedDown.htm", 'media-url': imgurl } )
     }
     resolve()
   })
