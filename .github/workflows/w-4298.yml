@@ -4,7 +4,7 @@
 #   branches: 
 #   - master 
 
-name: w-7741-4298
+name: w-4298
 
 on:
   workflow_dispatch:
